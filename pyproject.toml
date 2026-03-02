@@ -10,7 +10,13 @@ license = { text = "MIT" }
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+markers = [
+	"unit: unit tests",
+	"integration: integration tests",
+	"e2e: end-to-end tests",
+]
 
 
 [tool.ruff]
 line-length = 100
+
