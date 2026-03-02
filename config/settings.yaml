@@ -3,3 +3,24 @@
 
 app:
   name: "modular-rag-mcp-server"
+
+llm:
+  provider: "none"
+
+embedding:
+  provider: "none"
+
+vector_store:
+  provider: "none"
+
+retrieval:
+  provider: "hybrid"
+
+rerank:
+  provider: "none"
+
+evaluation:
+  provider: "none"
+
+observability:
+  provider: "stderr"
