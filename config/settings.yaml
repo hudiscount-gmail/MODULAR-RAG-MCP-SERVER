@@ -1,0 +1,5 @@
+# Minimal settings placeholder.
+# This file will be extended in task A3.
+
+app:
+  name: "modular-rag-mcp-server"

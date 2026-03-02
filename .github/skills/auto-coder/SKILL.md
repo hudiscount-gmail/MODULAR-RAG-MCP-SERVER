@@ -26,11 +26,23 @@ Sync Spec → Find Task → Implement → Test (≤3 fix rounds) → Persist
 Only pause at the very end for commit confirmation. Everything else runs autonomously.
 
 > **⚠️ CRITICAL: ALL Python commands MUST run inside the project venv.**
-> Before executing ANY `python` or `pytest` command, activate the venv first:
-> ```powershell
-> .\.venv\Scripts\Activate.ps1
+> 
+> 你当前工作区默认 shell 是 **Windows `cmd.exe`**，所以必须用 **`.bat/.cmd`** 方式激活。
+> 在执行任何 `python` / `pytest` 之前，先激活 venv：
+> ```bat
+> scripts\activate_venv.cmd
 > ```
-> Verify by checking `Get-Command python` points to `.venv\Scripts\python.exe`.
+> 
+> 如果 `.venv` 还不存在，先创建并安装依赖：
+> ```bat
+> scripts\setup_venv.cmd
+> ```
+> 
+> **验证 venv 已生效（必须通过）**：
+> ```bat
+> where python
+> ```
+> 第一条路径必须指向：`...\.venv\Scripts\python.exe`。
 > **Never use system Python. Never skip this step.**
 
 ---
@@ -38,9 +50,9 @@ Only pause at the very end for commit confirmation. Everything else runs autonom
 ### 1. Sync Spec
 
 Activate venv first, then sync:
-```powershell
-.\.venv\Scripts\Activate.ps1
-python .github/skills/auto-coder/scripts/sync_spec.py
+```bat
+scripts\activate_venv.cmd
+python .github\skills\auto-coder\scripts\sync_spec.py
 ```
 
 Then read the schedule file to get task statuses:
@@ -132,7 +144,7 @@ On "next", loop back to step 1 for the next task.
 - Spec is single source of truth
 - 3-round test fix limit
 - Match existing codebase style
-- **MUST activate `.venv` before ANY `python`/`pytest` command** — no exceptions. If unsure whether venv is active, run `.\.venv\Scripts\Activate.ps1` again (idempotent)
+- **MUST activate `.venv` before ANY `python`/`pytest` command** — no exceptions. If unsure whether venv is active, run `scripts\\activate_venv.cmd` again (idempotent)
 
 ---
 

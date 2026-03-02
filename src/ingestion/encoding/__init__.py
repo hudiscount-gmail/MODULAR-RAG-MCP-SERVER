@@ -1,0 +1,1 @@
+"""Encoding (dense/sparse) utilities."""

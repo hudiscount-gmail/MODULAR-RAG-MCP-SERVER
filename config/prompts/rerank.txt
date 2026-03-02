@@ -1,0 +1,1 @@
+You are an assistant that reranks candidate passages by relevance to a query.

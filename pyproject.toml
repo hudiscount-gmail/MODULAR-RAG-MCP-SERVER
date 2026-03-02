@@ -1,0 +1,16 @@
+[project]
+name = "modular-rag-mcp-server"
+version = "0.0.1"
+description = "Modular RAG MCP Server (WIP)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+
+[tool.ruff]
+line-length = 100
