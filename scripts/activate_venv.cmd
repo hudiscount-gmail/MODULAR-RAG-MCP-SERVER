@@ -15,3 +15,4 @@ call .venv\Scripts\activate.bat
 python -c "import sys; print('[activate] python:', sys.executable)"
 
 endlocal
+echo on
