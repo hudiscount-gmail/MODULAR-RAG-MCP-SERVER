@@ -27,22 +27,27 @@ Only pause at the very end for commit confirmation. Everything else runs autonom
 
 > **⚠️ CRITICAL: ALL Python commands MUST run inside the project venv.**
 > 
-> 你当前工作区默认 shell 是 **Windows `cmd.exe`**，所以必须用 **`.bat/.cmd`** 方式激活。
-> 在执行任何 `python` / `pytest` 之前，先激活 venv：
+> 你当前工作区默认 shell 是 **Windows `cmd.exe`**。为了避免被 Anaconda / WindowsApps 的 python 抢占 PATH，
+> 这里采用“**强制激活**”方式：在执行任何 `python` / `pytest` 之前，先运行：
+> 
 > ```bat
-> scripts\activate_venv.cmd
+> call .venv\Scripts\activate.bat
 > ```
 > 
-> 如果 `.venv` 还不存在，先创建并安装依赖：
+> 如果 `.venv` 还不存在，先创建并安装依赖（只需一次）：
+> 
 > ```bat
 > scripts\setup_venv.cmd
 > ```
 > 
-> **验证 venv 已生效（必须通过）**：
+> **激活后必须验证（必须通过）**：
+> 
 > ```bat
 > where python
+> python -c "import sys; print(sys.executable)"
 > ```
-> 第一条路径必须指向：`...\.venv\Scripts\python.exe`。
+> 
+> 其中 `where python` 的**第一条**以及 `sys.executable` 都必须指向：`...\.venv\Scripts\python.exe`。
 > **Never use system Python. Never skip this step.**
 
 ---
@@ -51,7 +56,8 @@ Only pause at the very end for commit confirmation. Everything else runs autonom
 
 Activate venv first, then sync:
 ```bat
-scripts\activate_venv.cmd
+call .venv\Scripts\activate.bat
+where python
 python .github\skills\auto-coder\scripts\sync_spec.py
 ```
 
@@ -144,7 +150,7 @@ On "next", loop back to step 1 for the next task.
 - Spec is single source of truth
 - 3-round test fix limit
 - Match existing codebase style
-- **MUST activate `.venv` before ANY `python`/`pytest` command** — no exceptions. If unsure whether venv is active, run `scripts\\activate_venv.cmd` again (idempotent)
+- **MUST activate `.venv` before ANY `python`/`pytest` command** — no exceptions. If unsure whether venv is active, run `call .venv\\Scripts\\activate.bat` again (idempotent)
 
 ---
 
